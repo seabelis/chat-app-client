@@ -1,4 +1,7 @@
 import React, {Component} from 'react'
+import { url } from "../constants";
+import * as request from 'superagent'
+
 export default class ChatroomForm extends Component {
   state={
     message:''
@@ -13,7 +16,10 @@ export default class ChatroomForm extends Component {
   onSubmit=(event)=>{
     event.preventDefault()
     console.log('onSubmit of chatroomform')
-  }
+    request.post(`${url}/message`)
+    .send({message: this.state.message})
+    .catch(error => console.log('got an error!', error));
+  };
 
   render() {
     return (
