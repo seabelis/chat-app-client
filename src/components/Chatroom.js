@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { url } from "../constants";
-export default class Chatroom extends Component {
+import {} from 'react-redux'
+import { connect } from "react-redux";
+import {addMessages} from '../actions'
+class Chatroom extends Component {
   state = {
     messages: []
   };
@@ -14,21 +17,31 @@ export default class Chatroom extends Component {
       this.setState({
         messages
       });
+      this.props.addMessages(messages)
     };
     console.log("url is ", url);
     console.log();
   }
   render() {
     console.log("local.state: ", this.state);
+    if(!this.props.messages) return 'wait for messages'
     return (
       <div>
         Hello from chatroom component.
         <ul>
           {this.state.messages.map(message => (
-            <li> {message.message}</li>
+            <li key={message.id} >  {message.message}</li>
           ))}
         </ul>
       </div>
     );
   }
 }
+function mapStateToProps(reduxState){
+  console.log('mstp of chatroom component', reduxState)
+  return {
+    messages: reduxState.message
+  }
+}
+const mapDispatchToProps = {addMessages}
+export default connect(mapStateToProps, mapDispatchToProps) (Chatroom)

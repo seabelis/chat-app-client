@@ -1,5 +1,5 @@
-export const ADD_MESSAGES = 'ADD_MESSAGES'
-export const addMessage=(payload)=>({
+export const ADD_MESSAGES = "ADD_MESSAGES";
+export const addMessages = payload => ({
   type: ADD_MESSAGES,
   payload
-})
+});
