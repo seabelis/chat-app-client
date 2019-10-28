@@ -45,7 +45,7 @@ class Login extends Component {
   };
 
   render() {
-    console.log("login done", this.props);
+    // console.log("login done", this.props);
     if (this.props.jwt !== "") return "user is logged in:";
     return (
       <div>

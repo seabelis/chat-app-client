@@ -23,19 +23,24 @@ export default class ChatroomForm extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <form onSubmit={this.onSubmit}>
-          <input
-            name="messageForm"
-            type="text"
-            onChange={this.onChange}
-            value={this.state.message}
-            placeholder="message here"
-          ></input>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    );
+    if (this.props.jwt !== "") {
+      return (
+        <div>
+          <form onSubmit={this.onSubmit}>
+            <input
+              name="messageForm"
+              type="text"
+              onChange={this.onChange}
+              value={this.state.message}
+              placeholder="message here"
+            ></input>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      );
+    } else {
+      return null
+    }
+    
   }
 }
